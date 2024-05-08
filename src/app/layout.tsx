@@ -5,9 +5,8 @@ import { cn } from '@/lib/utils'
 import React from 'react'
 
 export const metadata: Metadata = {
-  title: 'Optimized Next.js Template by Anmol Baranwal',
-  description:
-    '✨ Optimized Template for Next.js 14 + TypeScript + Tailwind with eslint commands, prettier configuration, strict ESLint rules & standards of GitHub repo.',
+  title: 'HTML to PDF app by Anmol Baranwal',
+  description: '✨ Built using Next.js, TypeScript, Tailwind and Buildship.',
 }
 
 export default function RootLayout({

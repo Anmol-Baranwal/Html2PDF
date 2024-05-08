@@ -1,28 +1,9 @@
-import {
-  Check,
-  Moon,
-  LucideProps,
-  SunMedium,
-  User,
-  ArrowRight,
-  Clock,
-  MoveLeft,
-  ChevronLeft,
-  Eye,
-  EyeOff,
-} from 'lucide-react'
+import { Check, LucideProps, SunMedium, Download } from 'lucide-react'
 
 export const Icons = {
   sun: SunMedium,
-  moon: Moon,
-  user: User,
   check: Check,
-  arrowRight: ArrowRight,
-  clock: Clock,
-  moveLeft: MoveLeft,
-  chevronLeft: ChevronLeft,
-  eye: Eye,
-  eyeOff: EyeOff,
+  download: Download,
   GitHub: (props: LucideProps) => (
     <svg viewBox="0 0 438.549 438.549" {...props}>
       <path
