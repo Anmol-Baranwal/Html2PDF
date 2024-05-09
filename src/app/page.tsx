@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Button from '@/components/Button'
 import Link from 'next/link'
 import { sampleHtml } from '@/data/sampleHtml'
+import GitHubCornerEffect from '@/components/GitHubCornerEffect'
 
 export default function HTML2PDF() {
   const [state, setState] = useState({
@@ -88,6 +89,7 @@ export default function HTML2PDF() {
           </div>
         )}
       </div>
+      <GitHubCornerEffect />
     </div>
   )
 }
