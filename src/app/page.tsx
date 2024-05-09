@@ -22,17 +22,21 @@ export default function HTML2PDF() {
   const handleConvertClick = async () => {
     setState((prevState) => ({ ...prevState, isLoading: true }))
     try {
-      const response = await fetch('https://pjdmuj.buildship.run/html-to-pdf', {
+      const response = await fetch('/api/htmltopdf', {
         method: 'POST',
         body: JSON.stringify({ html: htmlCode }),
         headers: {
           'Content-Type': 'application/json',
         },
       })
-      const data = await response.text()
-      setState((prevState) => ({ ...prevState, fetchUrl: data }))
+      const data = await response.json()
+
+      const pdfUrl = data.url
+      // console.log('pdf URL:', pdfUrl)
+
+      setState((prevState) => ({ ...prevState, fetchUrl: pdfUrl }))
     } catch (error) {
-      console.error('Error converting HTML to PDF:', error)
+      console.error('Error in converting HTML to PDF:', error)
     }
     setState((prevState) => ({ ...prevState, isLoading: false }))
   }
