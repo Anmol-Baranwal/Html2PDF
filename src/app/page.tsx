@@ -3,20 +3,24 @@
 import { useState } from 'react'
 import Button from '@/components/Button'
 import Link from 'next/link'
+import { sampleHtml } from '@/data/sampleHtml'
 
-export default function LandingPage() {
-  const [isLoading, setIsLoading] = useState(false)
-  const [fetchUrl, setFetchUrl] = useState('')
-  const [htmlCode, setHtmlCode] = useState('')
+export default function HTML2PDF() {
+  const [state, setState] = useState({
+    isLoading: false,
+    fetchUrl: '',
+    htmlCode: '',
+  })
+
+  // Destructure state into individual variables
+  const { isLoading, fetchUrl, htmlCode } = state
 
   const handleSampleCodeClick = () => {
-    const sampleHtml =
-      "<html><body><h1>Hey there, I'm your Dev.to buddy. Anmol!</h1></body></html>"
-    setHtmlCode(sampleHtml)
+    setState({ ...state, htmlCode: sampleHtml })
   }
 
   const handleConvertClick = async () => {
-    setIsLoading(true)
+    setState((prevState) => ({ ...prevState, isLoading: true }))
     try {
       const response = await fetch('https://pjdmuj.buildship.run/html-to-pdf', {
         method: 'POST',
@@ -26,20 +30,18 @@ export default function LandingPage() {
         },
       })
       const data = await response.text()
-      setFetchUrl(data)
-
-      console.log({ data })
+      setState((prevState) => ({ ...prevState, fetchUrl: data }))
     } catch (error) {
       console.error('Error converting HTML to PDF:', error)
     }
-    setIsLoading(false)
+    setState((prevState) => ({ ...prevState, isLoading: false }))
   }
 
   return (
     <div className="flex h-screen items-center justify-center pt-0">
       <div className="flex w-full flex-col items-center justify-center space-y-1 dark:text-gray-100">
         <h1 className="bg-gradient-to-r from-black to-gray-500 bg-clip-text pb-3 text-center text-3xl font-bold tracking-tighter text-transparent md:text-7xl/none">
-          HTML to PDF <br /> <span className=""> Converter</span>
+          HTML to PDF Converter
         </h1>
         <p className="sm:text-md mx-auto max-w-[650px] pb-1 pt-1 text-gray-600 md:py-3 md:text-xl lg:text-2xl">
           Paste the html code and convert it.
@@ -58,7 +60,7 @@ export default function LandingPage() {
           <div className="flex w-80 flex-col items-center justify-center">
             <textarea
               value={htmlCode}
-              onChange={(e) => setHtmlCode(e.target.value)}
+              onChange={(e) => setState({ ...state, htmlCode: e.target.value })}
               className="mb-4 w-full rounded-lg border border-gray-400 p-2 shadow-sm shadow-black/50"
               placeholder="Paste HTML code here"
               rows={8}
